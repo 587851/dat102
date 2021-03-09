@@ -144,9 +144,11 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 					likeMengder = false;
 				}
 			}
-
+			
 		}
+		
 		return likeMengder;
+	}
 
 	@Override
 	public boolean erTom() {
