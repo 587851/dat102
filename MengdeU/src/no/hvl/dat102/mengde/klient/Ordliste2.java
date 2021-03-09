@@ -80,6 +80,7 @@ public class Ordliste2 {
 			System.out.println(hentStreng);
 
 		}
+		tastatur.close();
 
 	}
 

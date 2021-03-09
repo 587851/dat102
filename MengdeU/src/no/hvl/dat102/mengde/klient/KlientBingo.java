@@ -2,6 +2,7 @@ package no.hvl.dat102.mengde.klient;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class KlientBingo {
 	// Oppretter 2 mengder med 75 bingokuler i hver.
@@ -10,8 +11,8 @@ public class KlientBingo {
 
 	public static void main(String[] a) {
 		final int ANTALL_BALLER = 75;
-		MengdeADT<Bingokule> mengde1 = new KjedetMengde<>();
-		MengdeADT<Bingokule> mengde2 = new KjedetMengde<>();
+		MengdeADT<Bingokule> mengde1 = new TabellMengde<>();
+		MengdeADT<Bingokule> mengde2 = new TabellMengde<>();
 		Bingokule kule1 = null;
 		Bingokule kule2 = null;
 
@@ -22,6 +23,7 @@ public class KlientBingo {
 			mengde2.leggTil(kule2);
 		}
 
+
 		System.out.println("\nAntall kuler totalt: " + mengde1.antall());
 		System.out.println();
 
@@ -31,7 +33,7 @@ public class KlientBingo {
 		}
 
 		if (mengde1.equals(mengde2)) {
-			System.out.println("Like mengder");
+			System.out.println("1. Like mengder");
 		}
 
 		if (!mengde1.erTom()) {
@@ -39,7 +41,7 @@ public class KlientBingo {
 			if (!mengde1.equals(mengde2)) {
 				System.out.println("Ulike mengder");
 			}
-		}
 
+		}
 	}
 }// class
