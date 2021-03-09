@@ -125,30 +125,28 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		}
 		if (ny == null) {
 			return false;
+
 		}
 		if (getClass() != ny.getClass()) {
 			return false;
-		} 
-		else {
-			boolean likeMengder = true;
-			MengdeADT<T> m2 = (KjedetMengde<T>) ny;
-
-			if (this.antall != m2.antall()) {
-				likeMengder = false;
-			} 
-			else {
-				Iterator<T> tellerm2 = m2.oppramser();
-				while(tellerm2.hasNext() && likeMengder != false) {
-					if(!this.inneholder(tellerm2.next())) {
-						likeMengder = false;
-					}
-				}
-				return likeMengder;
-			}
 		}
-		return false;
 
-	}
+		boolean likeMengder = true;
+		MengdeADT<T> m2 = (KjedetMengde<T>) ny;
+		if (this.antall != m2.antall()) {
+			likeMengder = false;
+		} else {
+			likeMengder = true;
+			Iterator<T> teller = m2.oppramser();
+			while (teller.hasNext() && likeMengder) {
+				T element = teller.next();
+				if (!this.inneholder(element)) {
+					likeMengder = false;
+				}
+			}
+
+		}
+		return likeMengder;
 
 	@Override
 	public boolean erTom() {
