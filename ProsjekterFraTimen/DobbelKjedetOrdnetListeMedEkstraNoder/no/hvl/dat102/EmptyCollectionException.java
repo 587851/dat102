@@ -6,9 +6,7 @@ package no.hvl.dat102;
 //********************************************************************
 
 public class EmptyCollectionException extends RuntimeException{
-   /**
-	 * 
-	 */
+  
 	
 /******************************************************************
      Setter opp dette unntaket med passende melding.

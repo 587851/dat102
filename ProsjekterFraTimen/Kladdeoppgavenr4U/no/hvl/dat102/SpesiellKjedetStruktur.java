@@ -45,24 +45,24 @@ public class SpesiellKjedetStruktur<T> {
 		s = start;
 		r = null;   // initier r, den reverserte strukturen,
 					// til den tomme listen
-		//TODO
-		 
-		//så lenge s er ulik null{ 
-		
-	     //La n peke på s sin første node
-		 //La nå s peke på resten av strukturen
-		 // Kjed n til resten av r
-		  // og la r peke på dens nye første node
-		//}
-	// Til slutt, la start peke på den reverserte
-					// kjedete strukturen.
+		while(s != null){ 		
+	     n = s;
+		 s = s.getNeste();
+		 n.setNeste(r);
+		 r = n;
+		}
+        start = r;
 	}// metode
     
 	public int finnAntallLike(T el) {
 		LinearNode<T> p = start;
 		int antallLike = 0;
-        //TODO
-		
+        while(p != null) {
+        	if(el.equals(p)) {
+        		antallLike++;
+        	}
+        	p = p.getNeste();
+        }
 		return antallLike;
 	}
 
@@ -81,7 +81,17 @@ public class SpesiellKjedetStruktur<T> {
 			start = nyNode;
 		} else {// Ikke-tom struktur
 			while (p != null && !funnet) {
-			//TODO
+		          if(el.equals(p.getNeste())) {
+		        	  funnet = true;
+		        	  nyNode.setNeste(p.getNeste());
+		        	  p.setNeste(nyNode);
+		          }else {
+		        	  p = p.getNeste();
+		          }
+			}
+			if(!funnet) {
+				nyNode.setNeste(start);
+				start = nyNode;
 			}
 			antall++;
 		} // metode

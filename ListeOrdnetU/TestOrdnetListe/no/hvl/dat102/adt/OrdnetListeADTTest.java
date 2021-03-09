@@ -26,6 +26,7 @@ public abstract class OrdnetListeADTTest {
 	private Integer e3 = 4;
 	private Integer e4 = 5;
 	private Integer e5 = 6;
+	private Integer e6 = 7;
 
 	/**
 	 * Opprett en tom liste for hver test.
@@ -73,8 +74,19 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void viseOrdnetIkkeAvtagende() {
-		// ... Fyll ut
-		// ... Legg til elementer og bruk fjernFoerste
+		liste.leggTil(e0);
+		liste.leggTil(e1);
+		liste.leggTil(e2);
+		liste.leggTil(e3);
+		liste.leggTil(e4);
+		liste.leggTil(e5);
+		
+		assertEquals(e0, liste.fjernFoerste());
+		assertEquals(e1, liste.fjernFoerste());
+		assertEquals(e2, liste.fjernFoerste());
+		assertEquals(e3, liste.fjernFoerste());
+		assertEquals(e4, liste.fjernFoerste());
+		assertEquals(e5, liste.fjernFoerste());
 	}
 
 	@Test
@@ -85,6 +97,7 @@ public abstract class OrdnetListeADTTest {
 		liste.leggTil(e0);
 		liste.leggTil(e4);
 		liste.leggTil(e3);
+		assertEquals(6, liste.antall());
 		assertEquals(e5, liste.fjernSiste());
 		assertEquals(e4, liste.fjernSiste());
 		assertEquals(e3, liste.fjernSiste());
@@ -98,8 +111,13 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilOgfjernMedDuplikater() {
-		// ... Fyll ut med å legge til passende elementer
-
+		liste.leggTil(e2);
+		liste.leggTil(e1);
+		liste.leggTil(e4);
+		liste.leggTil(e0);
+		liste.leggTil(e3);
+		liste.leggTil(e1);
+		
 		assertEquals(e0, liste.fjern(e0));
 		assertEquals(e1, liste.fjern(e1));
 		assertEquals(e4, liste.fjern(e4));
@@ -147,7 +165,20 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilFjernErTom() {
-		// ...Fyll ut. Legg inn elementer og fjern de
+		
+		liste.leggTil(e0);
+		liste.leggTil(e1);
+		liste.leggTil(e3);
+		liste.leggTil(e4);
+		liste.leggTil(e5);
+		assertEquals(5, liste.antall());
+		
+		assertEquals(e5, liste.fjernSiste());
+		assertEquals(e4, liste.fjernSiste());
+		assertEquals(e3, liste.fjernSiste());
+		assertEquals(e1, liste.fjernSiste());
+		assertEquals(e0, liste.fjernSiste());
+		assertTrue(liste.erTom());
 	}
 
 	/**

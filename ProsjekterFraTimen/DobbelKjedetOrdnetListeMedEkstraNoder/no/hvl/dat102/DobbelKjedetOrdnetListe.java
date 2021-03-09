@@ -6,24 +6,45 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	private int antall;
 
 	public DobbelKjedetOrdnetListe(T minVerdi, T maksVerdi) {
-		// TODO
+		foerste = new DobbelNode<T>(minVerdi);
+		siste = new DobbelNode<T>(maksVerdi);
+		foerste.setNeste(siste);
+		siste.setForrige(foerste);
+		antall = 0;	
+
 	}
 
 	@Override
 	public void leggTil(T el) {
 		DobbelNode<T> nyNode = new DobbelNode<T>(el);
-		//DobbelNode<T> aktuell = foerste.getNeste();
-		// TODO
+		DobbelNode<T> aktuell = foerste.getNeste();
 
+		while(el.compareTo(aktuell.getElement()) > 0) {
+			aktuell = aktuell.getNeste();
+		}
+		nyNode.setNeste(aktuell);
+		nyNode.setForrige(aktuell.getForrige());
+		aktuell.getForrige().setNeste(nyNode);
+		aktuell.setForrige(nyNode);
+		antall++;
 	}
 
 	@Override
 	public T fjern(T el) {
 		T resultat = null;
+		DobbelNode<T> aktuell = foerste;
 		if (erTom())
 			throw new EmptyCollectionException("dobbelkjedet ordnet liste er tom");
-		// TODO
 
+		while(el.compareTo(aktuell.getElement()) > 0 && el != null) {
+			aktuell = aktuell.getNeste();
+		}
+		if(el.equals(aktuell.getElement())) {
+			resultat = aktuell.getElement();
+			aktuell.getForrige().setNeste(aktuell.getNeste());
+			aktuell.getNeste().setForrige(aktuell.getForrige());
+			antall--;
+		}
 		return resultat;
 
 	}
@@ -35,7 +56,7 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	private DobbelNode<T> finn(T el) {
 		DobbelNode<T> aktuell = foerste.getNeste();
 		// TODO
-      return null;
+		return null;
 	}
 
 	@Override
@@ -48,7 +69,7 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	public int antall() {
 		return antall;
 	}
-/*
+
 	public String toString() {
 		String resultat = "";
 		DobbelNode<T> aktuell = foerste.getNeste();
@@ -71,7 +92,6 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 		}
 
 		return resultat;
-
 	}
-*/
+
 }

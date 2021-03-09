@@ -13,11 +13,16 @@ public class KlientPerson {
 		
 		OrdnetListeADT<Person> liste = new TabellOrdnetListe<Person>();
 		
+		liste.leggTil(ole);
 		liste.leggTil(anne);
 		liste.leggTil(ole);
 		liste.leggTil(bendik);
 		
 		Person person = null;
+		
+		
+			System.out.println(liste.toString());
+		
 		
 		while(!liste.erTom()) {
 			person = liste.fjernFoerste();

@@ -24,8 +24,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		bak--;
+		T resultat = liste[bak];
+		liste[bak] = null;		
 		return resultat;
 	}
 
@@ -34,8 +35,12 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		T resultat = liste[0];
+		bak--;
+		for(int i = 0; i < bak; i++) {
+			liste[i] = liste[i+1]; 
+		}
+		liste[bak] = null;	
 		return resultat;
 	}
 
@@ -52,10 +57,8 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	public T siste() {
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
-		
-		T resultat = null;
-		// ...Fyll ut
 
+		T resultat = liste[bak];
 		return resultat;
 	}
 
@@ -72,7 +75,23 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	@Override
 	public void leggTil(T element) {
 
-		// ...Fyll ut
+		if(liste.length == bak) {
+			utvid();
+		}
+
+		int i = 0;
+		while(liste[i] != null && element.compareTo(liste[i]) > 0) {
+			i++;
+		}
+		if(liste[i] == null) {
+			liste[i] = element;
+		}else {
+			for(int k = bak; k > i; k--) {
+				liste[k] = liste[k-1];
+			}
+			liste[i] = element;
+		}
+		bak++;
 	}
 
 	@Override
@@ -82,14 +101,32 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-		// ...Fyll ut
+		if(!inneholder(element)) {
+			throw new EmptyCollectionException("ordnet liste");
+		}
+		int i = finn(element);
+		bak--;
+		if(i == bak) {
+			liste[bak] = null;
+		}else {
+			for(int k = i; k < bak; k++) {
+				liste[k] = liste[k+1];
+			}
+			liste[bak] = null;
+		}
+
 		return element;
 
 	}
 
 	private int finn(T el) {
 		int i = 0, resultat = IKKE_FUNNET;
-		// ...Fyll ut
+		while(liste[i] != null && el.compareTo(liste[i]) > 0) {
+			i++;
+		}
+		if(el.equals(liste[i])) {
+			resultat = i;
+		}
 		return resultat;
 	}
 
