@@ -9,53 +9,62 @@ public interface BSTreADT<T extends Comparable<T>> {
 	//Legg merke til at i denne imlementasjonen er det ikke brukt exceptions som
 	// vi kunne hatt og som vi har brukt for i flere av de andre samlingene.
 
-	/*****************************************************************
-	 * Returnerer sann hvis dette binaere treet er tomt og usann ellers.
-	 *****************************************************************/
-
+	/**
+	 * @return antall noder i det binære treet
+	 */
 	public int antall();
 
-	/*****************************************************************
-	 * Returnerer sann hvis dette binære treet er tom og usann ellers.
-	 *****************************************************************/
+	/**
+	 * 
+	 * @return true hvis dette binære treet er tomt og false ellers.
+	 */
 	public boolean erTom();
 
-	/******************************************************************
+	/**
 	 * Legger det spesifiserte elementet på passende plass i dette binære søketreet.
 	 * Like elementer blir lagt til høyre.
-	 ******************************************************************/
+	 * 
+	 * @param element - Elementet som skal legges til i det binære treet
+	 */
 	public void leggTil(T element);
 
-	/**********************************************************************
-	 * Returnerer en referanse til det spesifiserte elementet hvis det fins i dette
-	 * binære treet ellers returneres null./
-	 ************************************************************************/
+
+	/**
+	 * 
+	 * @param element - Elementet som skal finnes
+	 * @return en referanse til det spesifiserte elementet hvis det fins i dette
+	 * binære treet ellers returneres null.
+	 */
 	public T finn(T element);
-	
-	/*****************************************************************
-	 * Returnerer en referanse til minste elementet, null viss tre er tomt.
-	 *****************************************************************/
+
+
+	/**
+	 * @return en referanse til det minste elementet, null hvis treet er tomt.
+	 */
 	public T finnMin();
-	
-	/*****************************************************************
-	 * Returnerer en referanse til største elementet, null viss tre er tomt.
-	 *****************************************************************/
+
+
+	/**
+	 * @return en referanse til det største elementet, null hvis treet er tomt.
+	 */
 	public T finnMaks();
 
 	/************************************************************************
 	 * Fjerner et element fra dette treet hvis det fins, ellers returneres null
 	 ************************************************************************/
-	
-	// public T fjern( T element);
+
+	//public T fjern( T element);
 	// Ikke impelmentert
-	
-	/************************************************************************
+
+	/**
 	 * Fjerner minste elementet fra dette treet hvis det fins, ellers returneres null
-	 ************************************************************************/
+	 * @return elementet som fjernes hvis det finnes, ellers returneres null
+	 */
 	public T fjernMin();
-	
-	/************************************************************************
-	 * Fjerner største elementet fra dette treet hvis det fins, ellers returneres null
-	 ************************************************************************/
+
+	/**
+	 * Fjerner det største elementet fra dette treet hvis det fins, ellers returneres null
+	 * @return elementet som fjernes hvis det finnes, ellers returneres null
+	 */
 	public T fjernMaks();
 }
